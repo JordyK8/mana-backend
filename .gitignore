@@ -1,0 +1,23 @@
+node_modules
+src/config/**/*.json
+!src/config/**/*.example.json
+.idea
+.vscode
+*.iml
+.env
+*.code-workspace
+
+# Misc. Os specific
+.DS_Store
+
+# Terraform
+terraform.tfvars
+.terraform
+terraform/infrastructure/certs
+!terraform/infrastructure/certs/.sh
+
+keycloak.json
+keycloak.*.json
+
+# file.key
+docker-scripts/file.key
