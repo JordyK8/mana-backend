@@ -14,10 +14,10 @@ class AttackService {
    * @throws {Error} on validation failure
    */
   async add(data) {
+    console.log(data);
     const attack = await this.models.Attack.create(data)
     return attack;
   }
-
 }
 
-module.exports = UsersService;
+module.exports = AttackService;

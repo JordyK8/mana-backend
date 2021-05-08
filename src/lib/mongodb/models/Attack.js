@@ -3,16 +3,20 @@ const db = require('../index');
 
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
-    name: {
+const attackSchema = new Schema({
+    intencity: {
         type: String,
         required: true
     },
-    email: {
-        type: String,
+    start: {
+        type: Number,
+        required: true
+    },
+    end: {
+        type: Number,
         required: true
     }
 })
-const User = db.model('User', userSchema);
+const Attack = db.model('Attack', attackSchema);
 
-module.exports = User;
+module.exports = Attack;
