@@ -1,0 +1,17 @@
+{
+  "name": "svc-users",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "watch_cmd_api": "nodemon ./src/cmd/api-ch-react-native/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jordy Kokelaar",
+  "license": "ISC",
+  
+  "dependencies": {
+    "mongodb": "^1.0.0"
+  }
+}

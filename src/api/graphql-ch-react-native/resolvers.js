@@ -1,10 +1,8 @@
-const { PubSub } = require('server-graphql').driver;
-
-const pubsub = new PubSub();
+const UsersService = require('svc-users');
 
 const s = async (_, { }, context) => {
-    console.log(context);
-    return true
+    const userService = new UsersService()
+    return userService.add()
 }
 
 module.exports = {

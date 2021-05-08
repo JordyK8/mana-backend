@@ -2,6 +2,7 @@
   "name": "api-ch-react-native",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,11 +11,12 @@
   "author": "Jordy Kokelaar",
   "license": "ISC",
   "dependencies": {
+    "mongodb": "^1.0.0",
     "graphql-ch-react-native": "^1.0.0",
+    "server": "^1.0.0",
     "config": "^1.0.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
-    "server": "^1.0.0",
     "server-graphql": "^1.0.0"
   }
 }
