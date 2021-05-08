@@ -1,13 +1,28 @@
 const UsersService = require('svc-users');
 
-const s = async (_, { }, context) => {
+const CreateUser = async (_, {data}, context) => {
     const userService = new UsersService()
-    return userService.add()
+    return userService.add(data)
+}
+const FindUser = async () => {
+    console.log('here');
+    const userService = new UsersService()
+    return userService.find()
+}
+
+const CreateAttack = async (_, { data }, context) => {
+    console.log(data);
+    const attackService = new AttackService()
+    return attackService.add(data)
 }
 
 module.exports = {
     
     Query: {
-        s
+        FindUser
     },
+    Mutation: {
+        CreateUser,
+        CreateAttack
+    }
 };
