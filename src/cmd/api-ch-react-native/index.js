@@ -1,4 +1,4 @@
-const config = require('config/cb');
+// const config = require('config');
 // const { publishFollow } = require('mongodb/helpers');
 const bootstrap = require('./bootstrap');
 
@@ -7,14 +7,14 @@ const app = bootstrap();
 if (require.main === module) {
 
       app.listen(
-        config.get('IMPLEMENTATION_API_PORT'),
-        config.get('IMPLEMENTATION_API_HOST'),
+        config.get('http://localhost:8080'),
+        // config.get('http://localhost:8080'),
         (err) => {
           if (err) {
             throw err;
           }
-          logger.info(`Server ready at http://${config.get('IMPLEMENTATION_API_HOST')}:${config.get('IMPLEMENTATION_API_PORT')}/graphql`);
-          logger.info(`Subscriptions ready at http://${config.get('IMPLEMENTATION_API_HOST')}:${config.get('IMPLEMENTATION_API_PORT')}/graphql`);
+          logger.info(`Server ready at http://${config.get('http://localhost:8080')}:${config.get('http://localhost:8080')}/graphql`);
+          logger.info(`Subscriptions ready at http://${config.get('http://localhost:8080')}:${config.get('http://localhost:8080')}/graphql`);
         },
       )
     // .then(() => Promise.all([
