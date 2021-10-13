@@ -4,7 +4,7 @@ const { graphqlServer } = require('server-graphql');
 const {
   GraphQLResolvers,
   GraphQLTypeDefs,
-} = require('graphql-ch-react-native');
+} = require('graphql-mana');
 module.exports = () => {
   const apolloSrv = graphqlServer({
     typeDefs: GraphQLTypeDefs,

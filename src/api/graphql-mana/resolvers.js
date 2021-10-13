@@ -1,9 +1,12 @@
 const UsersService = require('svc-users');
-const AttackService = require('svc-attack');
 
 const CreateUser = async (_, {data}, context) => {
     const userService = new UsersService()
     return userService.add(data)
+}
+const CreatePost = async (_, {data}, context) => {
+    console.log(data);
+    return true
 }
 const FindUser = async () => {
     console.log('here');
@@ -11,10 +14,6 @@ const FindUser = async () => {
     return userService.find()
 }
 
-const CreateAttack = async (_, { data }, context) => {
-    const attackService = new AttackService()
-    return attackService.add(data)
-}
 
 module.exports = {
     
@@ -23,6 +22,6 @@ module.exports = {
     },
     Mutation: {
         CreateUser,
-        CreateAttack
+        CreatePost,
     }
 };

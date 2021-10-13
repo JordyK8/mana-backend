@@ -8,7 +8,7 @@ gql`
   }
   type Mutation {
     CreateUser(data: UserInput!): User
-    CreateAttack(data: AttackInput!): Attack
+    CreatePost(data: PostInput!): Boolean
   }
   type User {
     _id: String!
@@ -24,10 +24,8 @@ gql`
     start: Int!
     end: Int!
   }
-  input AttackInput {
-    intencity: String!
-    start: Int!
-    end: Int!
+  input PostInput {
+    message: String!
   }
 `;
 
