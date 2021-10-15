@@ -1,7 +1,7 @@
 const User = require('mongodb/models/User');
 
 
-class UsersService {
+class UserService {
   /**
    * Class constructor
    * @param {*} sub
@@ -36,4 +36,4 @@ class UsersService {
   }
 }
 
-module.exports = UsersService;
+module.exports = UserService;

@@ -1,21 +1,16 @@
 {
-  "name": "graphql-mana",
+  "name": "svc-posts",
   "version": "1.0.0",
   "description": "",
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start" : "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jordy Kokelaar",
   "license": "ISC",
+  
   "dependencies": {
-    "@graphql-tools/utils": "^7.1.0",
-    "apollo-server-core": "^2.19.2",
-    "config": "^1.0.0",
-    "server-graphql": "^1.0.0",
-    "svc-users":"^1.0.0",
-    "svc-posts": "1.0.0"
+    "mongodb": "^1.0.0"
   }
 }

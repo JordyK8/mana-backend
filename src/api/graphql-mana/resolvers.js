@@ -1,16 +1,17 @@
-const UsersService = require('svc-users');
+const UserService = require('svc-users');
+const PostService = require('svc-posts')
 
 const CreateUser = async (_, {data}, context) => {
-    const userService = new UsersService()
+    const userService = new UserService()
     return userService.add(data)
 }
 const CreatePost = async (_, {data}, context) => {
-    console.log(data);
-    return true
+    const postService = new PostService()
+    return postService.create(data)
 }
 const FindUser = async () => {
     console.log('here');
-    const userService = new UsersService()
+    const userService = new UserService()
     return userService.find()
 }
 

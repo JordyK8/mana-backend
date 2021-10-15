@@ -10,7 +10,7 @@ const postSchema = new Schema({
       enum: ['important', 'social', 'news', 'default'],
       default: 'default'
     },
-    name: {
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true,
@@ -27,11 +27,15 @@ const postSchema = new Schema({
       user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true,
+        required: false,
       },
       message: {
         type: String,
-        required: true,
+        required: false,
+      },
+      date: {
+        type: Date,
+        required: false,
       },
     },
     seen: {
@@ -46,7 +50,7 @@ const postSchema = new Schema({
     },
 }, {
   timestamps: true,
-  collection: 'notifications',    
+  collection: 'posts',    
 })
 const Post = db.model('Post', postSchema);
 

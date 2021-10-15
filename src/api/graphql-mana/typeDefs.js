@@ -26,6 +26,9 @@ gql`
   }
   input PostInput {
     message: String!
+    user: String!
+    category: String
+    img: Upload
   }
 `;
 
