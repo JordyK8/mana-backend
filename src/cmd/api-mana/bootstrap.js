@@ -5,6 +5,7 @@ const {
   GraphQLResolvers,
   GraphQLTypeDefs,
 } = require('graphql-mana');
+const applyRouting = require('rest-mana')
 module.exports = () => {
   const apolloSrv = graphqlServer({
     typeDefs: GraphQLTypeDefs,
@@ -15,8 +16,11 @@ module.exports = () => {
     app,
   });
 
+  applyRouting(app)
+  
   const server = http.createServer(app);
   apolloSrv.installSubscriptionHandlers(server);
+
 
   return server;
 };

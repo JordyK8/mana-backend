@@ -4,50 +4,63 @@ const db = require('../index');
 const { Schema } = mongoose;
 
 const postSchema = new Schema({
-    category:{
+  published: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
+  postTime: {
+    type: Number,
+    required: false,
+  },
+  removeTime: {
+    type: Number,
+    required: false,
+  },
+  category:{
+    type: String,
+    required: true,
+    enum: ['important', 'social', 'news', 'default'],
+    default: 'default'
+  },
+  user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+  },
+  img: {
+      type: String,
+      required: false
+  },
+  message: {
       type: String,
       required: true,
-      enum: ['important', 'social', 'news', 'default'],
-      default: 'default'
-    },
+  },
+  comments: [{
     user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
-    },
-    img: {
-        type: String,
-        required: false
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: false,
     },
     message: {
-        type: String,
-        required: true,
+      type: String,
+      required: false,
     },
-    comments: {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: false,
-      },
-      message: {
-        type: String,
-        required: false,
-      },
-      date: {
-        type: Date,
-        required: false,
-      },
+    date: {
+      type: Date,
+      required: false,
     },
-    seen: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-    likes: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
+  }],
+  seen: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+  likes: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
 }, {
   timestamps: true,
   collection: 'posts',    

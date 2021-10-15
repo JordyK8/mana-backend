@@ -1,15 +1,19 @@
 const User = require('mongodb/models/User');
 const Post = require('mongodb/models/Post');
+const minioClient = require("minio");
+const MinioService = require('svc-minio')
 
 class PostService {
   /**
    * Class constructor
-   * @param {*} sub
    */
   constructor() {
     this.models = {
       User,
       Post,
+    };
+    this.services = {
+      minio: new MinioService(minioClient),
     };
   }
 
@@ -51,42 +55,42 @@ class PostService {
    * @throws {Error} on any problems in functions
    */
   async handlePostData(data){
-    console.log(data.img);
     try{
-      if(!data.user) throw new Error('No user was provided for this post.')
-      data.user = await this.models.User.findById(data.user)
-      if(!data.message) throw new Error('No message has been provided for post.')
-      if(!['important', 'social', 'news', 'default'].includes(data.category)) data.category = 'default'
-      if(data.img) data.img = await this.uploadPostImg(data.img)
-      return data
+      if(!data.user) throw new Error('No user was provided for this post.');
+      data.user = await this.models.User.findById(data.user);
+      if(!data.message) throw new Error('No message has been provided for post.');
+      if(!['important', 'social', 'news', 'default'].includes(data.category)) data.category = 'default';
+      return data;
     } catch(e) {
-      throw Error(e)
-    }
-  }
+      throw Error(e);
+    };
+  };
+  
  /**
   * 
-  * @param {Object} img 
-  * @returns {String} identifier for the image
+  * @param {String} id identifier of the post to attach file to
+  * @param {Object} filename
+  * @returns {<Promise>} updated post
   * @throws {Error} on any problems in functions
   */
-  async uploadPostImg(file){
-    if (!file) return;
-    file.then(async (f) => {
-      console.log('file', f);
-      const body = f.createReadStream();
-      const filename = `${id}`;
-      try {
-        const data = await aws.putObject(config.get('S3_AVATAR_BUCKET'), body, filename);
-        const extension = f.mimetype.replace('image/', '');
-        return this.models.Agent.updateOne(
-          { _id: id },
-          { avatar: { filename, ETag: data.ETag, extension } },
-        );
-      } catch (e) {
-        throw new Error(e);
-      }
-    });
-  }
-}
+  async attachImage(id, filename){
+    return this.models.Post.updateOne({ _id: id }, { img: filename });
+  };
+
+ /**
+  * 
+  * @param {String} id identifier of the post to attach file to
+  * @returns {File} file from bucket
+  * @throws {Error} on any problems in functions
+  */
+  async getPostImage(id){
+    try{
+      const file = await this.services.minio.getFile(id, 'post-files');
+      return file;
+    } catch(e) {
+      throw Error(e);
+    };
+  };
+};
 
 module.exports = PostService;
